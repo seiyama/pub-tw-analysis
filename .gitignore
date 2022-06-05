@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# logs
+pip-log.txt
+pip-delete-this-directory.txt
+logs/*.log
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Environments
+.env
+
+# Note
+tw-analysis/note.txt
+
+# Result Image
+images/*.png
