@@ -46,7 +46,7 @@ def main():
     next_token = ''
     res_count = 0
     # 1,000件以上は取得しない
-    max_count = 100
+    max_count = 1000
     while res_count < max_count : # 取得データが{max_count}件以上になったら、中止する
         try:
             res['meta']['next_token']
@@ -59,7 +59,7 @@ def main():
         finally:
             tweet_fields = 'id,created_at,text,author_id'
             user_fields = 'id,created_at,name,username'
-            search_url = 'https://api.twitter.com/2/tweets/search/recent?query={}%20lang%3Aja&start_time={}&max_results=10&sort_order=recency&{}expansions=author_id&tweet.fields={}&user.fields={}'.format(
+            search_url = 'https://api.twitter.com/2/tweets/search/recent?query={}%20lang%3Aja&start_time={}&max_results=100&sort_order=recency&{}expansions=author_id&tweet.fields={}&user.fields={}'.format(
                 urlp.quote(keyword.replace('AND ', ''), encoding='utf-8'), toStrUTC(dt.strptime(start_time, '%Y-%m-%d %H:%M:%S')), next_token, tweet_fields, user_fields
             )
             # print(search_url)
