@@ -17,6 +17,3 @@ instance/
 
 # Note
 tw-analysis/note.txt
-
-# Result Image
-images/*.png

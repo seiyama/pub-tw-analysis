@@ -32,7 +32,7 @@ def main():
     # ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
     # 　検索パラメータ
     # ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-    keyword = '電車遅延'
+    keyword = 'ウクライナ'
     # 日本時間
     start_time = '2022-06-01 00:00:00'
     # end_time = '2022-05-19 15:59:59'
@@ -46,7 +46,7 @@ def main():
     next_token = ''
     res_count = 0
     # 1,000件以上は取得しない
-    max_count = 1000
+    max_count = 100
     while res_count < max_count : # 取得データが{max_count}件以上になったら、中止する
         try:
             res['meta']['next_token']
@@ -59,7 +59,7 @@ def main():
         finally:
             tweet_fields = 'id,created_at,text,author_id'
             user_fields = 'id,created_at,name,username'
-            search_url = 'https://api.twitter.com/2/tweets/search/recent?query={}%20lang%3Aja&start_time={}&max_results=100&sort_order=recency&{}expansions=author_id&tweet.fields={}&user.fields={}'.format(
+            search_url = 'https://api.twitter.com/2/tweets/search/recent?query={}%20lang%3Aja&start_time={}&max_results=10&sort_order=recency&{}expansions=author_id&tweet.fields={}&user.fields={}'.format(
                 urlp.quote(keyword.replace('AND ', ''), encoding='utf-8'), toStrUTC(dt.strptime(start_time, '%Y-%m-%d %H:%M:%S')), next_token, tweet_fields, user_fields
             )
             # print(search_url)
@@ -130,21 +130,6 @@ def main():
     # 重み付きデータの設定
     weighted_edges = np.array(df[:50])
 
-    result = {}
-    for w in weighted_edges:
-        if w[0] in result:
-            result[w[0]] += w[2]
-        else:
-            result[w[0]] = w[2]
-        if w[1] in result:
-            result[w[1]] += w[2]
-        else:
-            result[w[1]] = w[2]
-
-    # 出現頻度の総和
-    all_freq = sum(result.values())
-    sizes = [7000*deg/all_freq for deg in result.values()]
-
     # ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
     # 　５．グラフ化し、画像へ保存
     # ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
@@ -160,12 +145,14 @@ def main():
     for i in range(n):
         color.append((i/n/2+0.4, i/n/2+0.4, 1.0, 0.4))
 
+    sizes = [50*ds[node] if node in ds else 25 for node, deg in G.degree()]
+
     pos = nx.spring_layout(G, k=0.7)
 
     # 共起ネットワーク
     plt.figure(figsize=(10,10))
     nodes = nx.draw_networkx_nodes(G, pos, node_shape = 'o', node_color=color, node_size=sizes)
-    nodes.set_edgecolor('k')
+    nodes.set_edgecolor('#777777')
     nx.draw_networkx_edges(G, pos, edge_color=color, width=3, alpha=0.4)
     nx.draw_networkx_labels(G, pos, font_color='k', font_size=14, font_family='MS Gothic', font_weight='bold')
     plt.savefig(os.path.join('images','networkx.png'))
