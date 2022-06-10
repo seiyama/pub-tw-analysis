@@ -8,8 +8,8 @@
 Implemented NLP from tweets in python
 
 # DEMO
-![barh](https://github.com/seiyama/pub-tw-analysis/tree/main/images/barh.png)
-![networkx](https://github.com/seiyama/pub-tw-analysis/tree/main/images/networkx.png)
+![networkx](https://github.com/seiyama/pub-tw-analysis/blob/main/images/networkx.png?raw=true)
+![barh](https://github.com/seiyama/pub-tw-analysis/blob/main/images/barh.png?raw=true)
 
 # Usage
 
