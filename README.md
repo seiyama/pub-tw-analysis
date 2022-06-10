@@ -9,9 +9,9 @@ Implemented NLP from tweets in python
 
 # DEMO
 <table border="0">
-<tr style="border:0px;">
-<td style="border:0px;padding:0px;"><img alt="networkx" src="https://github.com/seiyama/pub-tw-analysis/blob/main/images/networkx.png?raw=true" width="500"></td>
-<td style="border:0px;padding:0px;"><img alt="barh" src="https://github.com/seiyama/pub-tw-analysis/blob/main/images/barh.png?raw=true" width="500"></td>
+<tr>
+<td><img alt="networkx" src="https://github.com/seiyama/pub-tw-analysis/blob/main/images/networkx.png?raw=true" width="500"></td>
+<td><img alt="barh" src="https://github.com/seiyama/pub-tw-analysis/blob/main/images/barh.png?raw=true" width="500"></td>
 </tr>
 </table>
 
