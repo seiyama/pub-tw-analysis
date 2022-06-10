@@ -8,6 +8,7 @@
 Implemented NLP from tweets in python
 
 # DEMO
+When searching by `ウクライナ`
 <table border="0">
 <tr>
 <td><img alt="networkx" src="https://github.com/seiyama/pub-tw-analysis/blob/main/images/networkx.png?raw=true" width="500"></td>
